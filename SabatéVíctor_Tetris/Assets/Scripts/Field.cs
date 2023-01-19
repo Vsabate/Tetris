@@ -1,13 +1,17 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Field : MonoBehaviour
 {
     #region VARIABLES
     public PieceData[] f_pieceDataArray;
+    public Tilemap f_tilemap { get; private set; }
     #endregion
 
     private void Awake()
     {
+        f_tilemap = GetComponentInChildren<Tilemap>();
+
         for (int i = 0; i < f_pieceDataArray.Length; i++)
         {
             f_pieceDataArray[i].Init();
@@ -25,4 +29,18 @@ public class Field : MonoBehaviour
     {
         
     }
+
+
+    #region OTHER_FUNCTIONS
+    public void SpawnPiece()
+    {
+        int randomNumber = Random.Range(0, f_pieceDataArray.Length);
+        PieceData pData = f_pieceDataArray[randomNumber];
+    }
+
+    public void Set()
+    {
+
+    }
+    #endregion
 }
