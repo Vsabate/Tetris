@@ -38,9 +38,13 @@ public class Field : MonoBehaviour
         PieceData pData = f_pieceDataArray[randomNumber];
     }
 
-    public void Set()
+    public void Set(GamePiece _piece)
     {
-
+        for (int i = 0; i < _piece.g_cells.Length; i++)
+        {
+            Vector3Int tilePos = _piece.g_cells[i] + _piece.g_pos;
+            f_tilemap.SetTile(tilePos, _piece.g_data.p_tile);
+        }
     }
     #endregion
 }

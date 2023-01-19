@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 681036615}
   - component: {fileID: 681036614}
   - component: {fileID: 681036616}
+  - component: {fileID: 681036617}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -484,6 +485,18 @@ MonoBehaviour:
     p_tile: {fileID: 11400000, guid: 301ade9093e23d640bc99a5a3d2b78a4, type: 2}
   - p_tetrisPiece: 6
     p_tile: {fileID: 11400000, guid: 2fd442032edc59c47a325e949c4e8cc0, type: 2}
+--- !u!114 &681036617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681036613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06c8ba4179ff32545bdd426fc51fd2aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1870900621
 GameObject:
   m_ObjectHideFlags: 0

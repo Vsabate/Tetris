@@ -7,40 +7,40 @@ public static class Data
     public static readonly float sin = Mathf.Sin(Mathf.PI / 2f);
     public static readonly float[] RotationMatrix = new float[] { cos, sin, -sin, cos };
 
-    public static readonly Dictionary<TetrisPiece, Vector2[]> Cells = new Dictionary<TetrisPiece, Vector2[]>()
+    public static readonly Dictionary<TetrisPiece, Vector2Int[]> Cells = new Dictionary<TetrisPiece, Vector2Int[]>()
     {
-        { TetrisPiece.I, new Vector2[] { new Vector2(-1, 1), new Vector2( 0, 1), new Vector2( 1, 1), new Vector2( 2, 1) } },
-        { TetrisPiece.J, new Vector2[] { new Vector2(-1, 1), new Vector2(-1, 0), new Vector2( 0, 0), new Vector2( 1, 0) } },
-        { TetrisPiece.L, new Vector2[] { new Vector2( 1, 1), new Vector2(-1, 0), new Vector2( 0, 0), new Vector2( 1, 0) } },
-        { TetrisPiece.O, new Vector2[] { new Vector2( 0, 1), new Vector2( 1, 1), new Vector2( 0, 0), new Vector2( 1, 0) } },
-        { TetrisPiece.S, new Vector2[] { new Vector2( 0, 1), new Vector2( 1, 1), new Vector2(-1, 0), new Vector2( 0, 0) } },
-        { TetrisPiece.T, new Vector2[] { new Vector2( 0, 1), new Vector2(-1, 0), new Vector2( 0, 0), new Vector2( 1, 0) } },
-        { TetrisPiece.Z, new Vector2[] { new Vector2(-1, 1), new Vector2( 0, 1), new Vector2( 0, 0), new Vector2( 1, 0) } },
+        { TetrisPiece.I, new Vector2Int[] { new Vector2Int(-1, 1), new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int( 2, 1) } },
+        { TetrisPiece.J, new Vector2Int[] { new Vector2Int(-1, 1), new Vector2Int(-1, 0), new Vector2Int( 0, 0), new Vector2Int( 1, 0) } },
+        { TetrisPiece.L, new Vector2Int[] { new Vector2Int( 1, 1), new Vector2Int(-1, 0), new Vector2Int( 0, 0), new Vector2Int( 1, 0) } },
+        { TetrisPiece.O, new Vector2Int[] { new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int( 0, 0), new Vector2Int( 1, 0) } },
+        { TetrisPiece.S, new Vector2Int[] { new Vector2Int( 0, 1), new Vector2Int( 1, 1), new Vector2Int(-1, 0), new Vector2Int( 0, 0) } },
+        { TetrisPiece.T, new Vector2Int[] { new Vector2Int( 0, 1), new Vector2Int(-1, 0), new Vector2Int( 0, 0), new Vector2Int( 1, 0) } },
+        { TetrisPiece.Z, new Vector2Int[] { new Vector2Int(-1, 1), new Vector2Int( 0, 1), new Vector2Int( 0, 0), new Vector2Int( 1, 0) } },
     };
 
-    private static readonly Vector2[,] WallKicksI = new Vector2[,] {
-        { new Vector2(0, 0), new Vector2(-2, 0), new Vector2( 1, 0), new Vector2(-2,-1), new Vector2( 1, 2) },
-        { new Vector2(0, 0), new Vector2( 2, 0), new Vector2(-1, 0), new Vector2( 2, 1), new Vector2(-1,-2) },
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2( 2, 0), new Vector2(-1, 2), new Vector2( 2,-1) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2(-2, 0), new Vector2( 1,-2), new Vector2(-2, 1) },
-        { new Vector2(0, 0), new Vector2( 2, 0), new Vector2(-1, 0), new Vector2( 2, 1), new Vector2(-1,-2) },
-        { new Vector2(0, 0), new Vector2(-2, 0), new Vector2( 1, 0), new Vector2(-2,-1), new Vector2( 1, 2) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2(-2, 0), new Vector2( 1,-2), new Vector2(-2, 1) },
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2( 2, 0), new Vector2(-1, 2), new Vector2( 2,-1) },
+    private static readonly Vector2Int[,] WallKicksI = new Vector2Int[,] {
+        { new Vector2Int(0, 0), new Vector2Int(-2, 0), new Vector2Int( 1, 0), new Vector2Int(-2,-1), new Vector2Int( 1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int( 2, 0), new Vector2Int(-1, 0), new Vector2Int( 2, 1), new Vector2Int(-1,-2) },
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int( 2, 0), new Vector2Int(-1, 2), new Vector2Int( 2,-1) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int(-2, 0), new Vector2Int( 1,-2), new Vector2Int(-2, 1) },
+        { new Vector2Int(0, 0), new Vector2Int( 2, 0), new Vector2Int(-1, 0), new Vector2Int( 2, 1), new Vector2Int(-1,-2) },
+        { new Vector2Int(0, 0), new Vector2Int(-2, 0), new Vector2Int( 1, 0), new Vector2Int(-2,-1), new Vector2Int( 1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int(-2, 0), new Vector2Int( 1,-2), new Vector2Int(-2, 1) },
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int( 2, 0), new Vector2Int(-1, 2), new Vector2Int( 2,-1) },
     };
 
-    private static readonly Vector2[,] WallKicksJLOSTZ = new Vector2[,] {
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2(-1, 1), new Vector2(0,-2), new Vector2(-1,-2) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2( 1,-1), new Vector2(0, 2), new Vector2( 1, 2) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2( 1,-1), new Vector2(0, 2), new Vector2( 1, 2) },
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2(-1, 1), new Vector2(0,-2), new Vector2(-1,-2) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2( 1, 1), new Vector2(0,-2), new Vector2( 1,-2) },
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2(-1,-1), new Vector2(0, 2), new Vector2(-1, 2) },
-        { new Vector2(0, 0), new Vector2(-1, 0), new Vector2(-1,-1), new Vector2(0, 2), new Vector2(-1, 2) },
-        { new Vector2(0, 0), new Vector2( 1, 0), new Vector2( 1, 1), new Vector2(0,-2), new Vector2( 1,-2) },
+    private static readonly Vector2Int[,] WallKicksJLOSTZ = new Vector2Int[,] {
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int(-1, 1), new Vector2Int(0,-2), new Vector2Int(-1,-2) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int( 1,-1), new Vector2Int(0, 2), new Vector2Int( 1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int( 1,-1), new Vector2Int(0, 2), new Vector2Int( 1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int(-1, 1), new Vector2Int(0,-2), new Vector2Int(-1,-2) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int( 1, 1), new Vector2Int(0,-2), new Vector2Int( 1,-2) },
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int(-1,-1), new Vector2Int(0, 2), new Vector2Int(-1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int(-1, 0), new Vector2Int(-1,-1), new Vector2Int(0, 2), new Vector2Int(-1, 2) },
+        { new Vector2Int(0, 0), new Vector2Int( 1, 0), new Vector2Int( 1, 1), new Vector2Int(0,-2), new Vector2Int( 1,-2) },
     };
 
-    public static readonly Dictionary<TetrisPiece, Vector2[,]> WallKicks = new Dictionary<TetrisPiece, Vector2[,]>()
+    public static readonly Dictionary<TetrisPiece, Vector2Int[,]> WallKicks = new Dictionary<TetrisPiece, Vector2Int[,]>()
     {
         { TetrisPiece.I, WallKicksI },
         { TetrisPiece.J, WallKicksJLOSTZ },
@@ -50,4 +50,5 @@ public static class Data
         { TetrisPiece.T, WallKicksJLOSTZ },
         { TetrisPiece.Z, WallKicksJLOSTZ },
     };
+
 }
