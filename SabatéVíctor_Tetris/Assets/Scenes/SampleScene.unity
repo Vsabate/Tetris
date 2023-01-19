@@ -421,6 +421,7 @@ GameObject:
   m_Component:
   - component: {fileID: 681036615}
   - component: {fileID: 681036614}
+  - component: {fileID: 681036616}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -456,6 +457,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &681036616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681036613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 629b65c81749d714eb909218b7d57b98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  f_pieceDataArray:
+  - p_tetrisPiece: 0
+    p_tile: {fileID: 11400000, guid: cb2b033b6443f894798a1ca06c08881d, type: 2}
+  - p_tetrisPiece: 1
+    p_tile: {fileID: 11400000, guid: 9b933edc7bb6a2d4dad8793a20286a1c, type: 2}
+  - p_tetrisPiece: 2
+    p_tile: {fileID: 11400000, guid: f062ca6ce064266499a898234f8cb7a4, type: 2}
+  - p_tetrisPiece: 3
+    p_tile: {fileID: 11400000, guid: 98c142338220a634fbe98ee65dd196cd, type: 2}
+  - p_tetrisPiece: 4
+    p_tile: {fileID: 11400000, guid: 1891871a8000ba942a9a4c41b4ebddce, type: 2}
+  - p_tetrisPiece: 5
+    p_tile: {fileID: 11400000, guid: 301ade9093e23d640bc99a5a3d2b78a4, type: 2}
+  - p_tetrisPiece: 6
+    p_tile: {fileID: 11400000, guid: 2fd442032edc59c47a325e949c4e8cc0, type: 2}
 --- !u!1 &1870900621
 GameObject:
   m_ObjectHideFlags: 0
