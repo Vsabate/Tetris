@@ -485,6 +485,8 @@ MonoBehaviour:
     p_tile: {fileID: 11400000, guid: 301ade9093e23d640bc99a5a3d2b78a4, type: 2}
   - p_tetrisPiece: 6
     p_tile: {fileID: 11400000, guid: 2fd442032edc59c47a325e949c4e8cc0, type: 2}
+  f_spawnPos: {x: -1, y: 8, z: 0}
+  f_fieldSize: {x: 10, y: 20}
 --- !u!114 &681036617
 MonoBehaviour:
   m_ObjectHideFlags: 0

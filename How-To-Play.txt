@@ -1,0 +1,7 @@
+CONTROLS
+********
+
+A / LEFT ARROW: Move piece to left
+D / RIGHT ARROW: Move piece to right
+S / DOWN ARROW: Make piece drop (soft)
+SPACE: Make piece drop (hard)
