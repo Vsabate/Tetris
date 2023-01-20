@@ -10,6 +10,12 @@ public class GamePiece : MonoBehaviour
     public Vector3Int[] g_cells { get; private set; }
     public PieceData g_data { get; private set; }
     public int g_rotIndex { get; private set; }
+
+    public float g_moveDelay = 1f;
+    public float g_lockDelay = 0.5f;
+
+    private float g_moveTime;
+    private float g_lockTime;
     #endregion
 
     public void Init(Field _field, Vector3Int _pos, PieceData _data)
@@ -18,6 +24,8 @@ public class GamePiece : MonoBehaviour
         g_pos = _pos;
         g_data = _data;
         g_rotIndex = 0;
+        g_moveTime = Time.time+ g_moveDelay;
+        g_lockTime = 0f;
 
         if (g_cells==null)
         {
@@ -33,8 +41,15 @@ public class GamePiece : MonoBehaviour
     private void Update()
     {
         g_field.Clear(this);
+        g_lockTime += Time.deltaTime;
+
         CheckRotation();
         CheckMovement();
+
+        if (Time.time >= g_moveTime)
+        {
+            Step();
+        }
         g_field.Set(this);
     }
 
@@ -75,8 +90,8 @@ public class GamePiece : MonoBehaviour
         {
             continue;
         }
+        Lock();
     }
-
     private bool Move(Vector2Int _movement)
     {
         Vector3Int newPos = g_pos;
@@ -87,6 +102,7 @@ public class GamePiece : MonoBehaviour
         if (auxValidPos)
         {
             g_pos = newPos;
+            g_lockTime = 0f;
         }
 
         return auxValidPos;
@@ -164,6 +180,20 @@ public class GamePiece : MonoBehaviour
             wallLimitIndex--;
         }
         return Wrap(wallLimitIndex, 0, g_data.p_wallLimits.GetLength(0));
+    }
+    private void Step()
+    {
+        g_moveTime = Time.time + g_moveDelay;
+        Move(Vector2Int.down);
+        if (g_lockTime >= g_lockDelay)
+        {
+            Lock();
+        }
+    }
+    private void Lock()
+    {
+        g_field.Set(this);
+        g_field.SpawnPiece();
     }
     #endregion
 }
