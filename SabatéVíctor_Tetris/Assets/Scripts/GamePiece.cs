@@ -9,6 +9,7 @@ public class GamePiece : MonoBehaviour
     public Vector3Int g_pos { get; private set; }
     public Vector3Int[] g_cells { get; private set; }
     public PieceData g_data { get; private set; }
+    public int g_rotIndex { get; private set; }
     #endregion
 
     public void Init(Field _field, Vector3Int _pos, PieceData _data)
@@ -16,6 +17,7 @@ public class GamePiece : MonoBehaviour
         g_field = _field;
         g_pos = _pos;
         g_data = _data;
+        g_rotIndex = 0;
 
         if (g_cells==null)
         {
@@ -31,9 +33,8 @@ public class GamePiece : MonoBehaviour
     private void Update()
     {
         g_field.Clear(this);
-
+        CheckRotation();
         CheckMovement();
-
         g_field.Set(this);
     }
 
@@ -57,6 +58,17 @@ public class GamePiece : MonoBehaviour
             DropPiece();
         }
     }
+    private void CheckRotation()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)) // counter clockwise
+        {
+            Rotate(-1);
+        }
+        else if (Input.GetKeyDown(KeyCode.X)) // clockwise
+        {
+            Rotate(1);
+        }
+    }
     private void DropPiece()
     {
         while (Move(Vector2Int.down))
@@ -78,6 +90,46 @@ public class GamePiece : MonoBehaviour
         }
 
         return auxValidPos;
+    }
+    private void Rotate(int _direction)
+    {
+        g_rotIndex = Wrap(g_rotIndex+_direction, 0, 4);
+        for (int i = 0; i < g_cells.Length; i++)
+        {
+            Vector3 auxCell = g_cells[i];
+            int auxX, auxY;
+            switch (g_data.p_tetrisPiece)
+            {
+                case TetrisPiece.I:
+                    auxCell.x -= 0.5f;
+                    auxCell.y -= 0.5f;
+                    auxX = Mathf.CeilToInt((auxCell.x * Data.RotationMatrix[0] * _direction) + (auxCell.y * Data.RotationMatrix[1] * _direction));
+                    auxY = Mathf.CeilToInt((auxCell.x * Data.RotationMatrix[2] * _direction) + (auxCell.y * Data.RotationMatrix[3] * _direction));
+                    break;
+                case TetrisPiece.O:
+                    auxCell.x -= 0.5f;
+                    auxCell.y -= 0.5f;
+                    auxX = Mathf.CeilToInt((auxCell.x * Data.RotationMatrix[0] * _direction) + (auxCell.y * Data.RotationMatrix[1] * _direction));
+                    auxY = Mathf.CeilToInt((auxCell.x * Data.RotationMatrix[2] * _direction) + (auxCell.y * Data.RotationMatrix[3] * _direction));
+                    break;
+                default:
+                    auxX = Mathf.RoundToInt((auxCell.x * Data.RotationMatrix[0] * _direction) + (auxCell.y * Data.RotationMatrix[1] * _direction));
+                    auxY = Mathf.RoundToInt((auxCell.x * Data.RotationMatrix[2] * _direction) + (auxCell.y * Data.RotationMatrix[3] * _direction));
+                    break;
+            }
+            g_cells[i] = new Vector3Int(auxX,auxY,0);
+        }
+    }
+    private int Wrap(int _input, int _min, int _max)
+    {
+        if (_input < _min)
+        {
+            return _max - (_min - _input) % (_max-_min);
+        }
+        else
+        {
+            return _min - (_input-_min) % (_max-_min);
+        }
     }
     #endregion
 }
