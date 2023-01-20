@@ -93,7 +93,18 @@ public class GamePiece : MonoBehaviour
     }
     private void Rotate(int _direction)
     {
+        int aux_lastRotIndex = g_rotIndex;
         g_rotIndex = Wrap(g_rotIndex+_direction, 0, 4);
+        RotMatrix(_direction);
+
+        if (!CheckWallLimits(g_rotIndex, _direction))
+        {
+            g_rotIndex = aux_lastRotIndex;
+            RotMatrix(-_direction);
+        }
+    }
+    private void RotMatrix(int _direction)
+    {
         for (int i = 0; i < g_cells.Length; i++)
         {
             Vector3 auxCell = g_cells[i];
@@ -117,8 +128,9 @@ public class GamePiece : MonoBehaviour
                     auxY = Mathf.RoundToInt((auxCell.x * Data.RotationMatrix[2] * _direction) + (auxCell.y * Data.RotationMatrix[3] * _direction));
                     break;
             }
-            g_cells[i] = new Vector3Int(auxX,auxY,0);
+            g_cells[i] = new Vector3Int(auxX, auxY, 0);
         }
+
     }
     private int Wrap(int _input, int _min, int _max)
     {
@@ -130,6 +142,28 @@ public class GamePiece : MonoBehaviour
         {
             return _min - (_input-_min) % (_max-_min);
         }
+    }
+    private bool CheckWallLimits(int _rotIndex, int _rotDirection)
+    {
+        int wallLimitIndex = GetWallLimitIndex(_rotIndex, _rotDirection);
+        for (int i = 0; i < g_data.p_wallLimits.GetLength(1); i++)
+        {
+            Vector2Int auxTranslation = g_data.p_wallLimits[wallLimitIndex, i];
+            if (Move(auxTranslation))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private int GetWallLimitIndex(int _rotIndex, int _rotDirection)
+    {
+        int wallLimitIndex = _rotIndex*2;
+        if (_rotDirection < 0)
+        {
+            wallLimitIndex--;
+        }
+        return Wrap(wallLimitIndex, 0, g_data.p_wallLimits.GetLength(0));
     }
     #endregion
 }
