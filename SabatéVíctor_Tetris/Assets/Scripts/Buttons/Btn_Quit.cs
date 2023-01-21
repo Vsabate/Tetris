@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Btn_Quit : Btn_Parent
 {
-    protected override void ButtonAction()
+    public override void ButtonAction()
     {
-        // FIRST SAVE MAX SCORE, THEN QUIT
-
+        // Save MaxScore, then quit game.
+        JsonFileSystem.instance.SaveToJson();
         Application.Quit();
     }
 }

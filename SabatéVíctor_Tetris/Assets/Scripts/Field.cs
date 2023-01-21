@@ -153,6 +153,9 @@ public class Field : MonoBehaviour
         f_tilemap.ClearAllTiles();
         ScoreManager.instance.s_currentScore = 0;
         UIManager.instance.TextUpdate();
+        UIManager.instance.u_menuPanel.SetActive(true);
+
+        // gameplay must be stopped here somehow
     }
     #endregion
 }

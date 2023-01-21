@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Btn_Play : Btn_Parent
 {
-    protected override void ButtonAction()
+    public override void ButtonAction()
     {
+        JsonFileSystem.instance.LoadSaveFile();
         UIManager.instance.u_menuPanel.SetActive(false);
     }
 }
