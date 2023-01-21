@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     private void Awake()
     {
-
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -31,6 +30,9 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // MAX SCORE NEEDS TO BE LOADED FROM DATA FILE
+
+
         TextUpdate();
     }
 
