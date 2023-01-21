@@ -1,4 +1,4 @@
-CONTROLS
+*CONTROLS*
 *******************************************
 A / LEFT ARROW: Move piece to left
 D / RIGHT ARROW: Move piece to right
@@ -7,6 +7,6 @@ SPACE: Make piece drop (hard)
 X: Rotate piece
 
 
-SCORE
+*SCORE*
 *******************************************
 For each row cleared, you get 10 points.
