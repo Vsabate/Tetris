@@ -26,20 +26,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI[] u_scoreText;
     #endregion
 
-
-    // Start is called before the first frame update
     private void Start()
     {
-        // MAX SCORE NEEDS TO BE LOADED FROM DATA FILE
-
-
         TextUpdate();
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-        
     }
 
     public void TextUpdate()

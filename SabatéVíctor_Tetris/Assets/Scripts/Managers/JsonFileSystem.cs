@@ -32,7 +32,7 @@ public class JsonFileSystem : MonoBehaviour
 
         string json = JsonUtility.ToJson(svData, true);
         File.WriteAllText(Application.dataPath + "/SaveFile.json", json);
-        Debug.Log("New save file created");
+        Debug.Log("New save file at: " + auxPath);
     }
 
     public void LoadSaveFile()
@@ -53,8 +53,9 @@ public class JsonFileSystem : MonoBehaviour
 
     public void DeleteSaveFile(string _json)
     {
-        _json = File.ReadAllText(Application.dataPath + "/SaveFile.json");
+        //_json = File.ReadAllText(Application.dataPath + "/SaveFile.json");
         File.Delete(_json);
+        Debug.Log("Save file deleted");
     }
     public void DeletePossibleSaveFile()
     {

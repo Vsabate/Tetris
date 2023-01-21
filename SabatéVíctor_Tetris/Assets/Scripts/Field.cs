@@ -14,6 +14,9 @@ public class Field : MonoBehaviour
         get { Vector2Int pos = new Vector2Int(-f_fieldSize.x / 2, -f_fieldSize.y / 2);
             return new RectInt(pos, f_fieldSize);}
     }
+
+    //[HideInInspector]
+    public bool gameIsActive;
     #endregion
 
     private void Awake()
@@ -29,19 +32,16 @@ public class Field : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnPiece();
+        gameIsActive = false;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     #region OTHER_FUNCTIONS
     public void SpawnPiece()
     {
+        if (!gameIsActive)
+        {
+            gameIsActive = true;
+        }
         int randomNumber = Random.Range(0, f_pieceDataArray.Length);
         PieceData pData = f_pieceDataArray[randomNumber];
         f_currentPiece.Init(this, f_spawnPos, pData);
@@ -149,13 +149,12 @@ public class Field : MonoBehaviour
     }
     private void GameOver()
     {
+        gameIsActive = false;
         Debug.Log("GAME OVER");
-        f_tilemap.ClearAllTiles();
+        //f_tilemap.ClearAllTiles();
         ScoreManager.instance.s_currentScore = 0;
         UIManager.instance.TextUpdate();
-        UIManager.instance.u_menuPanel.SetActive(true);
-
-        // gameplay must be stopped here somehow
+        UIManager.instance.u_menuPanel.SetActive(true);      
     }
     #endregion
 }

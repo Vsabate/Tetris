@@ -22,19 +22,12 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region VARIABLES
-    //[HideInInspector]
+    [HideInInspector]
     public int s_currentScore, s_maxScore;
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
         s_currentScore = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

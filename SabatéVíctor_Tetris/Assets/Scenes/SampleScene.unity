@@ -1069,6 +1069,7 @@ MonoBehaviour:
     p_tile: {fileID: 11400000, guid: 2fd442032edc59c47a325e949c4e8cc0, type: 2}
   f_spawnPos: {x: -1, y: 8, z: 0}
   f_fieldSize: {x: 10, y: 20}
+  gameIsActive: 0
 --- !u!114 &681036617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1850,6 +1851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af12e0cfa38999e44adb4d421b1b455f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btn_field: {fileID: 681036616}
 --- !u!1 &1857455757
 GameObject:
   m_ObjectHideFlags: 0

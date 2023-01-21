@@ -40,17 +40,20 @@ public class GamePiece : MonoBehaviour
 
     private void Update()
     {
-        g_field.Clear(this);
-        g_lockTime += Time.deltaTime;
-
-        CheckRotation();
-        CheckMovement();
-
-        if (Time.time >= g_moveTime)
+        if (g_field != null && g_field.gameIsActive)
         {
-            Step();
+            g_field.Clear(this);
+            g_lockTime += Time.deltaTime;
+
+            CheckRotation();
+            CheckMovement();
+
+            if (Time.time >= g_moveTime)
+            {
+                Step();
+            }
+            g_field.Set(this);
         }
-        g_field.Set(this);
     }
 
     #region MOVEMENT_FUNCTIONS
@@ -79,15 +82,6 @@ public class GamePiece : MonoBehaviour
         {
             Rotate(1);
         }
-        // BORRAR A PARTIR DE AQUÍ!
-        //if (Input.GetKeyDown(KeyCode.Z)) // counter clockwise
-        //{
-        //    Rotate(-1);
-        //}
-        //else if (Input.GetKeyDown(KeyCode.X)) // clockwise
-        //{
-        //    Rotate(1);
-        //}
     }
     private void DropPiece()
     {
@@ -169,7 +163,7 @@ public class GamePiece : MonoBehaviour
         int wallLimitIndex = GetWallLimitIndex(_rotIndex, _rotDirection);
         for (int i = 0; i < g_data.p_wallLimits.GetLength(1); i++)
         {
-            Vector2Int auxTranslation = g_data.p_wallLimits[wallLimitIndex, i]; // THIS HAS BUG
+            Vector2Int auxTranslation = g_data.p_wallLimits[wallLimitIndex, i];
             if (Move(auxTranslation))
             {
                 return true;
