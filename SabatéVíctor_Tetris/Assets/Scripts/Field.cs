@@ -125,11 +125,15 @@ public class Field : MonoBehaviour
         {
             Vector3Int auxPos = new Vector3Int(col, _row, 0);
             f_tilemap.SetTile(auxPos, null);
+
+            // UPDATE SCORE
             ScoreManager.instance.s_currentScore++;
             if (ScoreManager.instance.s_currentScore > ScoreManager.instance.s_maxScore)
             {
                 ScoreManager.instance.s_maxScore = ScoreManager.instance.s_currentScore;
             }
+            UIManager.instance.TextUpdate();
+            // UPDATE SCORE
         }
         while (_row < auxBounds.yMax)
         {
@@ -148,6 +152,7 @@ public class Field : MonoBehaviour
         Debug.Log("GAME OVER");
         f_tilemap.ClearAllTiles();
         ScoreManager.instance.s_currentScore = 0;
+        UIManager.instance.TextUpdate();
     }
     #endregion
 }
