@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
     #region Singleton
-    public static UIManager instance;
+    public static ScoreManager instance;
     private void Awake()
     {
+
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -22,18 +22,12 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region VARIABLES
-    public GameObject u_menuPanel;
-    public TextMeshProUGUI[] u_scoreText;
+    [HideInInspector]
+    public int s_currentScore, s_maxScore;
     #endregion
 
-    private void Start()
+    void Start()
     {
-        TextUpdate();
-    }
-
-    public void TextUpdate()
-    {
-        u_scoreText[0].SetText("Score: " + ScoreManager.instance.s_currentScore);
-        u_scoreText[1].SetText("Max Score: " + ScoreManager.instance.s_maxScore);
+        s_currentScore = 0;
     }
 }
